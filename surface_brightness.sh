@@ -10,7 +10,17 @@ MinimumBrightness=001
 SensorToDisplayScale=24
 
 while true; do
-    Light=$(cat /sys/bus/iio/devices/iio\:device0/in_illuminance_raw)
+    # Check the first path
+    if [[ -f /sys/bus/iio/devices/iio\:device0/in_illuminance_raw ]]; then
+        Light=$(cat /sys/bus/iio/devices/iio\:device0/in_illuminance_raw)
+    # If the first path is not available, check the second one
+    elif [[ -f /sys/bus/iio/devices/iio\:device0/subsystem/devices/iio:device2/in_illuminance_raw ]]; then
+        Light=$(cat /sys/bus/iio/devices/iio\:device0/subsystem/devices/iio:device2/in_illuminance_raw)
+    # If neither path is available, handle the error as appropriate
+    else
+        echo "Sensor not found" >&2
+        exit 1
+    fi
 
     CurrentBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
 
