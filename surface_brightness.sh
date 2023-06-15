@@ -1,11 +1,11 @@
 #!/bin/bash
 
-LevelSteps=60
-AnimationDelay=0.016
-MaxScreenBrightness=96000
-SensorDelay=1
+LevelSteps=120
+AnimationDelay=0.032
+MaxScreenBrightness=7500
+SensorDelay=5
 
-MinimumBrightness=001
+MinimumBrightness=050
 
 SensorToDisplayScale=24
 
