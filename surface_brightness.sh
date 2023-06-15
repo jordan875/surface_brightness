@@ -21,7 +21,7 @@ fi
 fi
 if [ $backlight -lt $sensor ]
 then
-if [ $(($backlight - $sensor)) -lt $sensitivity ]
+if [ $(($sensor - $backlight)) -gt $sensitivity ]
 then
 updated=1
 fi
@@ -36,12 +36,12 @@ target=$min
 fi
 if [ $updated -gt 0 ]
 then
-echo “Starting brightness: $backlight”
-echo “Ambient light: $sensor”
-echo “Adjusted brightness: $target”
-echo “-------------------------------”
-echo “Sensitivity: $sensitivity”
-echo “Min: $min Max: $max”
+echo "Starting brightness: $backlight"
+echo "Ambient light: $sensor"
+echo "Adjusted brightness: $target"
+echo "-------------------------------"
+echo "Sensitivity: $sensitivity"
+echo "Min: $min Max: $max"
 echo
 echo $target > /sys/class/backlight/intel_backlight/brightness
 fi
