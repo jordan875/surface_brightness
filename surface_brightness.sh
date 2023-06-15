@@ -10,7 +10,7 @@ while [ $updated -gt 0 ]
 do
 updated=0
 backlight=$(cat /sys/class/backlight/intel_backlight/brightness)
-sensor=$(cat /sys/bus/iio/devices/iio:device0/in_illuminance_raw)
+sensor=$(cat /sys/bus/iio/devices/iio:device0/subsystem/devices/iio:device2/in_illuminance_raw)
 target=$sensor
 if [ $backlight -gt $sensor ]
 then
