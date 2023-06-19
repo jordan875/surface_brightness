@@ -5,22 +5,12 @@ AnimationDelay=0.032
 MaxScreenBrightness=7500
 SensorDelay=5
 
-MinimumBrightness=050
+MinimumBrightness=75
 
 SensorToDisplayScale=24
 
 while true; do
-    # Check the first path
-    if [[ -f /sys/bus/iio/devices/iio\:device0/in_illuminance_raw ]]; then
-        Light=$(cat /sys/bus/iio/devices/iio\:device0/in_illuminance_raw)
-    # If the first path is not available, check the second one
-    elif [[ -f /sys/bus/iio/devices/iio\:device0/subsystem/devices/iio:device2/in_illuminance_raw ]]; then
-        Light=$(cat /sys/bus/iio/devices/iio\:device0/subsystem/devices/iio:device2/in_illuminance_raw)
-    # If neither path is available, handle the error as appropriate
-    else
-        echo "Sensor not found" >&2
-        exit 1
-    fi
+    Light=$(cat /sys/bus/iio/devices/iio\:device0/in_illuminance_raw)
 
     CurrentBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
 
