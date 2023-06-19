@@ -10,7 +10,7 @@ MinimumBrightness=75
 SensorToDisplayScale=24
 
 while true; do
-    Light=$(cat /sys/bus/iio/devices/iio\:device0/in_illuminance_raw)
+    Light=$(cat /sys/bus/iio/devices/iio\:device?/in_illuminance_raw)
 
     CurrentBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
 
